@@ -1,0 +1,50 @@
+<ruleSet>
+    <rule id="Spring">
+        <goals>
+            <attribute name="timeLabel" owner="TARGET" value="Spring" writerClass="org.jrtech.engines.rules.writer.MapStringValueWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-03-01" operatorFunction="since" />
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-06-01" operatorFunction="before" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="Summer">
+        <goals>
+            <attribute name="timeLabel" owner="TARGET" value="Summer" writerClass="org.jrtech.engines.rules.writer.MapStringValueWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-06-01" operatorFunction="since" />
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-09-01" operatorFunction="before" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="Autumn">
+        <goals>
+            <attribute name="timeLabel" owner="TARGET" value="Autumn" writerClass="org.jrtech.engines.rules.writer.MapStringValueWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-09-01" operatorFunction="since" />
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-12-01" operatorFunction="before" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="Winter">
+        <goals>
+            <attribute name="timeLabel" owner="TARGET" value="Winter" writerClass="org.jrtech.engines.rules.writer.MapStringValueWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2017-12-01" operatorFunction="since" />
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-03-01" operatorFunction="before" />
+            </condition>
+            <condition>
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2018-12-01" operatorFunction="since" />
+                <attribute type="DateConditionalAttribute" name="Now" owner="SOURCE" value="2019-03-01" operatorFunction="before" />
+            </condition>
+        </conditions>
+    </rule>
+</ruleSet>

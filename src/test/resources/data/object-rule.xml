@@ -1,0 +1,25 @@
+<ruleSet>
+    <rule id="My Rule 1(0)" terminating="true">
+        <goals>
+            <attribute method="" name="call" owner="TARGET" readerClass="" value="BPD7500f49a040743af" writerClass="" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute caseSensitive="false" name="Direction" negate="false" owner="SOURCE" readerClass="" regex="false" value="O" />
+                <attribute caseSensitive="false" name="MessageType" negate="false" owner="SOURCE" readerClass="" regex="true" value="[1-2][0-8].*" />
+                <attribute caseSensitive="false" name="Currency" negate="false" owner="SOURCE" readerClass="" regex="false" value="USD" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="My Rule 1(1)" terminating="true">
+        <goals>
+            <attribute method="" name="call" owner="TARGET" readerClass="" value="BPDf537bd436c3c47f7" writerClass="" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute caseSensitive="false" name="Direction" negate="false" owner="SOURCE" readerClass="" regex="false" value="O" />
+                <attribute caseSensitive="false" name="MessageType" negate="false" owner="SOURCE" readerClass="" regex="true" value="5.*" />
+            </condition>
+        </conditions>
+    </rule>
+</ruleSet>

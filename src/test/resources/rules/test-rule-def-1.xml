@@ -1,0 +1,25 @@
+<ruleSet>
+    <rule id="My Rule 1">
+        <goals>
+            <attribute name="result" owner="TARGET" value="rule 1" writerClass="org.jrtech.engines.rules.writer.MapStringValueWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute name="Direction" owner="SOURCE" value="O" />
+                <attribute name="MessageType" owner="SOURCE" value="[1-2][0-8].*" operatorFunction="regex" />
+                <attribute name="Currency" owner="SOURCE" value="USD" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="My Rule 2">
+        <goals>
+            <attribute name="result" owner="TARGET" value="rule 2" writerClass="org.jrtech.engines.rules.writer.MapStringValueWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute name="Direction" owner="SOURCE" value="O" />
+                <attribute name="MessageType" owner="SOURCE" value="5.*" operatorFunction="regex" />
+            </condition>
+        </conditions>
+    </rule>
+</ruleSet>

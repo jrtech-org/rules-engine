@@ -1,0 +1,127 @@
+<ruleSet>
+    <!-- Manual Processing - MUST BE IN THE 1ST BLOCK -->
+    <rule id="Create from New" state="New" action="save">
+        <goals>
+            <attribute name="state" value="Draft" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+    <rule id="Modify from Draft" state="Draft" action="save">
+        <goals>
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+    <rule id="Approve from Draft - [m/n]" state="Draft" action="approve">
+        <goals>
+            <attribute name="state" value="Approving" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+            <attribute name="approverList" value="${USER@CONTEXT}" writerClass="org.jrtech.engines.rules.writer.AddApproverToListWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute name="${SELF}" value="false" readerClass="org.jrtech.engines.rules.reader.FinalApproveReader" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="Approve from Draft - [n/n]" state="Draft" action="approve">
+        <goals>
+            <attribute name="state" value="Approved" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+            <attribute name="approverList" value="${USER@CONTEXT}" writerClass="org.jrtech.engines.rules.writer.AddApproverToListWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute name="${SELF}" value="true" readerClass="org.jrtech.engines.rules.reader.FinalApproveReader" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="Approve from Approving - [m/n]" state="Approving" action="approve">
+        <goals>
+            <attribute name="state" value="Approving" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+            <attribute name="approverList" value="${USER@CONTEXT}" writerClass="org.jrtech.engines.rules.writer.AddApproverToListWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute type="BooleanConditionalAttribute" name="${SELF}" value="false" readerClass="org.jrtech.engines.rules.reader.FinalApproveReader" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="Approve from Approving - [n/n]" state="Approving" action="approve">
+        <goals>
+            <attribute name="state" value="Approved" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+            <attribute name="approverList" value="${USER@CONTEXT}" writerClass="org.jrtech.engines.rules.writer.AddApproverToListWriter" />
+        </goals>
+        <conditions>
+            <condition>
+                <attribute name="${SELF}" value="true" readerClass="org.jrtech.engines.rules.reader.FinalApproveReader" />
+            </condition>
+        </conditions>
+    </rule>
+    <rule id="Reject" state="Approving" action="reject">
+        <goals>
+            <attribute name="state" value="Draft" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+            <attribute name="approverList" value="" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+    <rule id="Reject from Approved" state="Approved" action="reject">
+        <goals>
+            <attribute name="state" value="Draft" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+            <attribute name="approverList" value="" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+    <rule id="Deploy" state="Approved" action="deploy">
+        <goals>
+            <attribute name="state" value="Deployed" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+    <rule id="Deploy from deployed" state="Deployed" action="deploy">
+        <goals>
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+    <rule id="Archive from Approved" state="Approved" action="archive">
+        <goals>
+            <attribute name="state" value="Archived" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+    <rule id="Archive from Deployed" state="Deployed" action="archive">
+        <goals>
+            <attribute name="state" value="Archived" />
+            <attribute name="modificationTimestamp" value="${NOW@SYSTEM}" writerClass="org.jrtech.engines.rules.writer.DateFromCalendarStringWriter" />
+            <attribute name="modifiedBy" value="${USER@CONTEXT}" />
+        </goals>
+        <conditions>
+        </conditions>
+    </rule>
+</ruleSet>
