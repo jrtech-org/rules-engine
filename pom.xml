@@ -5,7 +5,7 @@
 
 	<groupId>org.jrtech.engines</groupId>
 	<artifactId>rules-engine</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<description>Rules Engine</description>
@@ -15,13 +15,15 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		
-		<jrtechcommon.version>2.0.0</jrtechcommon.version>
+		<jrtechcommon.version>2.0.1-SNAPSHOT</jrtechcommon.version>
 		
-		<caffeine.version>2.9.3</caffeine.version>
+		<!-- 
+		 <caffeine.version>2.9.3</caffeine.version>
+		 -->
 		<commons-lang3.version>3.12.0</commons-lang3.version>
+		<guava.version>30.1-jre</guava.version>
         <junit.version>4.13.2</junit.version>
-        <logback.version>1.2.6</logback.version>
-        <slf4j.version>1.7.30</slf4j.version>
+        <logback.version>1.2.10</logback.version>
 	</properties>
 
 	<licenses>
@@ -45,6 +47,7 @@
 			<artifactId>lang-utils</artifactId>
 			<version>${jrtechcommon.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.jrtech.common</groupId>
 			<artifactId>xml-utils</artifactId>
@@ -68,16 +71,10 @@
 
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
+			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
 		
-		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-api</artifactId>
-		    <version>${slf4j.version}</version>
-    	</dependency>
-
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -90,12 +87,20 @@
 		</dependency>
 
 		<!-- Caching library -->
+		<!-- 
 		<dependency>
 		    <groupId>com.github.ben-manes.caffeine</groupId>
 		    <artifactId>caffeine</artifactId>
 		    <version>${caffeine.version}</version>
 		    <scope>test</scope>
 		</dependency>
+		 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+            <scope>test</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

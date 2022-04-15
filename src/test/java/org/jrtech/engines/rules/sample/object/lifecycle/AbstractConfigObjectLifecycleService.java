@@ -16,7 +16,6 @@
  */
 package org.jrtech.engines.rules.sample.object.lifecycle;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +25,7 @@ import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jrtech.engines.rules.model.AbstractStateManagedObject;
@@ -35,8 +35,7 @@ import org.jrtech.engines.rules.model.Rule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
+import com.google.common.cache.Cache;
 
 
 public abstract class AbstractConfigObjectLifecycleService<T extends AbstractStateManagedObject> {
@@ -93,18 +92,12 @@ public abstract class AbstractConfigObjectLifecycleService<T extends AbstractSta
     private Map<String, Object> contextData = null;
 
     protected static <T extends AbstractStateManagedObject> Cache<String, ConcurrentMap<String, List<ConfigObjectLifecycleRule<T>>>> createStateTableCache() {
-    	Cache<String, ConcurrentMap<String, List<ConfigObjectLifecycleRule<T>>>> cache = Caffeine.newBuilder()
-    			  .expireAfterWrite(Duration.ofMinutes(10))
-    			  .maximumSize(1000)
-    			  .build();
+    	Cache<String, ConcurrentMap<String, List<ConfigObjectLifecycleRule<T>>>> cache = CacheUtil.createCache(1000, 10, TimeUnit.MINUTES);
         return cache;
     }
 
     protected static Cache<String, ConcurrentMap<String, Set<String>>> createStateActionsTableCache() {
-    	Cache<String, ConcurrentMap<String, Set<String>>> cache = Caffeine.newBuilder()
-    			  .expireAfterWrite(Duration.ofMinutes(10))
-    			  .maximumSize(1000)
-    			  .build();
+    	Cache<String, ConcurrentMap<String, Set<String>>> cache = CacheUtil.createCache(1000, 10, TimeUnit.MINUTES);
         return cache;
     }
 
