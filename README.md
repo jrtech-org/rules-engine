@@ -1,2 +1,2 @@
-# rules-engine
-Rules engine with Java8
+# Simple Rules Engine
+A simple rules engine library that runs on the JVM (Java8).
