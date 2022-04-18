@@ -109,7 +109,7 @@
 		<repository>
 			<id>github-common-libs</id>
 			<name>GitHub common-libs packages</name>
-			<url>https://github.com/jrtech-org/common-libs/packages</url>
+			<url>https://maven.pkg.github.com/jrtech-org/common-libs</url>
 		</repository>	
 	</repositories>
 
