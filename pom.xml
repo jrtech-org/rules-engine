@@ -58,13 +58,6 @@
 			<artifactId>xml-utils</artifactId>
 			<version>${jrtechcommon.version}</version>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>org.jrtech.common</groupId>
-			<artifactId>ehcache-utils</artifactId>
-			<version>${jrcommon.version}</version>
-		</dependency>
-		 -->
 
 		<!-- 3rd Party Libraries -->
 		<dependency>
@@ -116,7 +109,7 @@
 		<repository>
 			<id>github-common-libs</id>
 			<name>GitHub common-libs packages</name>
-			<url>https://maven.pkg.github.com/jrtech-org/common-libs</url>
+			<url>https://github.com/jrtech-org/common-libs/packages</url>
 		</repository>	
 	</repositories>
 
